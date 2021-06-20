@@ -5,6 +5,10 @@
   "repository": "git@github.com:tsuchiya-kai/study_prisma.git",
   "author": "tsuchiya-kai <yukaigangan@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "prisma:studio": "npx prisma studio",
+    "log": "docker logs -f postgres"
+  },
   "devDependencies": {
     "@prisma/client": "^2.25.0",
     "@types/node": "^15.12.4",
