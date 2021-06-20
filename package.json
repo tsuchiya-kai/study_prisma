@@ -1,0 +1,15 @@
+{
+  "name": "study_prisma",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:tsuchiya-kai/study_prisma.git",
+  "author": "tsuchiya-kai <yukaigangan@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@prisma/client": "^2.25.0",
+    "@types/node": "^15.12.4",
+    "prisma": "^2.25.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.4"
+  }
+}
