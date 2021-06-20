@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  db:
+    container_name: postgres
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    # postgers のログを作成します。ログの詳細についてはこちら Doc:https://www.postgresql.org/docs/11/runtime-config-logging.html
+    # 確認コマンド：docker logs -f postgres
+    command: postgres -c log_destination=stderr -c log_statement=all -c log_connections=on -c log_disconnections=on
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    logging:
+      options:
+        max-size: "10k"
+        max-file: "5"
