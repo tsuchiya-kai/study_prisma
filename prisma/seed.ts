@@ -14,7 +14,7 @@ async function main() {
   const alice = await prisma.user.create({
     data: {
       name: "Alice",
-      email: "alice@exsample.com",
+      email: "alice@example.com",
       posts: {
         create: posts,
       },
@@ -24,7 +24,7 @@ async function main() {
   const bob = await prisma.user.create({
     data: {
       name: "Bob",
-      email: "bob@exsample.com",
+      email: "bob@example.com",
       posts: {
         create: posts,
       },
