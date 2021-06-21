@@ -1,8 +1,8 @@
 // query issuance command: npx ts-node prisma/index.ts
 
 import { PrismaClient } from "@prisma/client";
-// ベタ書き用
-import { User } from "@prisma/client";
+// ベタ書き用（queryRaw の型引数）
+// import { User } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
