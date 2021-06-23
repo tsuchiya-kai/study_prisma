@@ -8,6 +8,11 @@ const prisma = new PrismaClient();
 
 async function main() {
   /**
+   *
+   * 下記 query lesson
+   *
+   */
+  /**
    * NOTE: 単純な検索
    */
   // 1件検索
@@ -76,6 +81,23 @@ async function main() {
   //   "'' OR 1=1 ORDER BY 1 DESC"
   // );
   // console.log(alice);
+  /**
+   *
+   * 下記 transaction lesson
+   *
+   */
+  const john = await prisma.user.create({
+    data: {
+      name: "john",
+      email: "john@example.com",
+      profile: {
+        create: {
+          bio: "I like turtles",
+        },
+      },
+    },
+  });
+  console.log(john);
 }
 
 main()
