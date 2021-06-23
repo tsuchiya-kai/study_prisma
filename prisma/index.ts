@@ -86,18 +86,40 @@ async function main() {
    * 下記 transaction lesson
    *
    */
-  const john = await prisma.user.create({
-    data: {
-      name: "john",
-      email: "john@example.com",
-      profile: {
-        create: {
-          bio: "I like turtles",
+  // const john = await prisma.user.create({
+  //   data: {
+  //     name: "john",
+  //     email: "john@example.com",
+  //     profile: {
+  //       create: {
+  //         bio: "I like turtles",
+  //       },
+  //     },
+  //   },
+  // });
+  // console.log(john);
+
+  const [user, post, totalPosts] = await prisma.$transaction([
+    prisma.user.create({
+      data: {
+        name: "mike",
+        email: "mike@example.com",
+        profile: {
+          create: {
+            bio: "I Like turtles",
+          },
         },
       },
-    },
-  });
-  console.log(john);
+    }),
+    prisma.post.create({
+      data: {
+        title: "sample post",
+      },
+    }),
+    prisma.post.count(),
+  ]);
+
+  console.log(user, post, totalPosts);
 }
 
 main()
