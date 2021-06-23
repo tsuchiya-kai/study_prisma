@@ -1,12 +1,17 @@
 // query issuance command: npx ts-node prisma/index.ts
 
 import { PrismaClient } from "@prisma/client";
-// ベタ書き用
-import { User } from "@prisma/client";
+// ベタ書き用（queryRaw の型引数）
+// import { User } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 async function main() {
+  /**
+   *
+   * 下記 query lesson
+   *
+   */
   /**
    * NOTE: 単純な検索
    */
@@ -76,6 +81,45 @@ async function main() {
   //   "'' OR 1=1 ORDER BY 1 DESC"
   // );
   // console.log(alice);
+  /**
+   *
+   * 下記 transaction lesson
+   *
+   */
+  // const john = await prisma.user.create({
+  //   data: {
+  //     name: "john",
+  //     email: "john@example.com",
+  //     profile: {
+  //       create: {
+  //         bio: "I like turtles",
+  //       },
+  //     },
+  //   },
+  // });
+  // console.log(john);
+
+  const [user, post, totalPosts] = await prisma.$transaction([
+    prisma.user.create({
+      data: {
+        name: "mike",
+        email: "mike@example.com",
+        profile: {
+          create: {
+            bio: "I Like turtles",
+          },
+        },
+      },
+    }),
+    prisma.post.create({
+      data: {
+        title: "sample post",
+      },
+    }),
+    prisma.post.count(),
+  ]);
+
+  console.log(user, post, totalPosts);
 }
 
 main()
